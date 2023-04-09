@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 app.post('/data', (req, res) => {
   const base = req.body;
   io.emit('send', base);
-  res.send('Сіздің ұсынсыңыз сақталды!')
+  res.send('Сіздің ұсынсыңыз сақталды! e')
 });
 
 io.on('connection', (socket) => {
