@@ -10,34 +10,33 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
   res.send(`
     <h1>Форма</h1>
-    <form>
-  <!-- Поле названия -->
-  <label for="name">Название:</label>
-  <input type="text" name="title" required>
+    <form class="hhh" id="myForm" action="/data" method="post"> <!-- Исправлено: добавлен атрибуты action и method для отправки формы -->
+      <!-- Поле названия -->
+      <label for="name">Название:</label>
+      <input type="text" id="name" name="title" required>
 
-  <!-- Поле текста адаптивного размера -->
-  <label for="text">Не туралы:</label>
-  <textarea  name="content" rows="4" cols="50" required></textarea>
+      <!-- Поле текста адаптивного размера -->
+      <label for="text">Не туралы:</label>
+      <textarea id="text" name="content" rows="4" cols="50" required></textarea>
 
-  <!-- Список -->
-  <label for="list">Список:</label>
-  <select name="labels">
-    <option name="Ұсыныс">Ұсыныс</option>
-    <option name="Жаңалық">Жаңалық</option>
-    <option name="Тапсырма">Тапсырма</option>
-  </select>
+      <!-- Список -->
+      <label for="list">Список:</label>
+      <select name="labels">
+        <option value="Ұсыныс">Ұсыныс</option>
+        <option value="Жаңалық">Жаңалық</option>
+        <option value="Тапсырма">Тапсырма</option>
+      </select>
 
-  <!-- Кнопка отправки формы -->
-  <input type="submit" value="Отправить">
-</form>
-
+      <!-- Кнопка отправки формы -->
+      <input type="submit" value="Отправить">
+    </form>
   `);
 });
 
 app.post('/data', (req, res) => {
   const base = req.body;
   io.emit('send', base);
-  res.send('Сіздің ұсынсыңыз сақталды! e')
+  res.send('Сіздің ұсынсыңыз сақталды!'); // Исправлено: убрана лишняя буква "e"
 });
 
 io.on('connection', (socket) => {
