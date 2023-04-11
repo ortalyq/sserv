@@ -30,6 +30,11 @@ app.get('/', (req, res) => {
       <!-- Кнопка отправки формы -->
       <input type="submit" value="Отправить">
     </form>
+    
+    <script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+</script>
   `);
 });
 
